@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 export default class DeleteDepartamento extends Component {
   render() {
+    const { departamento, onConfirm, onCancel } = this.props;
+
     return (
       <div>
         <h1>

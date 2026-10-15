@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import elbicho from './../assets/images/elbicho.jpg'
 import ServiceDepartamentos from './../services/ServiceDepartamentos'
 import { NavLink } from 'react-router-dom'
+import DeleteDepartamento from './DeleteDepartamento'
 
 export default class HomeComponent extends Component {
     service = new ServiceDepartamentos();
@@ -38,8 +39,12 @@ export default class HomeComponent extends Component {
     deleteDepartamento = () => {
         const depto = this.state.departamentoAEliminar;
 
+
         this.service.deleteDepartamentos(depto.numero).then((result) => {
             console.log('departamento eliminado');
+            this.setState({
+                departamentoAEliminar: null
+            });
             this.loadDepartamentos();
         })
     }
@@ -47,6 +52,13 @@ export default class HomeComponent extends Component {
     if (this.state.status == true) {
         return (
         <div style={{ margin: "auto", width: "50%" }}>
+            {this.state.departamentoAEliminar && (
+                <DeleteDepartamento
+                    departamento={this.state.departamentoAEliminar}
+                    onConfirm={this.deleteDepartamento}
+                    onCancel={this.cancelarEliminacion}
+                />
+            )}
             <table className="table table-info">
                 <thead>
                     <tr>
