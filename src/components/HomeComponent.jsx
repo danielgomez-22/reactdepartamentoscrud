@@ -7,7 +7,8 @@ export default class HomeComponent extends Component {
     service = new ServiceDepartamentos();
     state = {
         departamentos: [],
-        status: false
+        status: false,
+        departamentoAEliminar: null
     }
     loadDepartamentos = () => {
         this.service.getDepartamentos().then((result) => {
@@ -22,8 +23,22 @@ export default class HomeComponent extends Component {
         this.loadDepartamentos();
     }
 
-    deleteDepartamento = (idDepartamento) => {
-        this.service.deleteDepartamentos(idDepartamento).then((result) => {
+    pedirConfirmacion = (depto) => {
+        this.setState({
+            departamentoAEliminar: depto
+        });
+    }
+
+    cancelarEliminacion = () => {
+        this.setState({
+            departamentoAEliminar: null
+        });
+    }
+
+    deleteDepartamento = () => {
+        const depto = this.state.departamentoAEliminar;
+
+        this.service.deleteDepartamentos(depto.numero).then((result) => {
             console.log('departamento eliminado');
             this.loadDepartamentos();
         })
@@ -57,7 +72,7 @@ export default class HomeComponent extends Component {
                                 </td>
                                 <td><button className="btn btn-danger"
                                 onClick={() => 
-                                {this.deleteDepartamento(depto.numero)}}>
+                                {this.pedirConfirmacion(depto)}}>
                                     Delete
                                 </button></td>
                             </tr>)
