@@ -38,8 +38,6 @@ export default class HomeComponent extends Component {
 
     deleteDepartamento = () => {
         const depto = this.state.departamentoAEliminar;
-
-
         this.service.deleteDepartamentos(depto.numero).then((result) => {
             console.log('departamento eliminado');
             this.setState({
