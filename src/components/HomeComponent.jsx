@@ -55,7 +55,9 @@ export default class HomeComponent extends Component {
                                         Edit
                                     </NavLink>
                                 </td>
-                                <td><button className="btn btn-danger" onClick={() => this.deleteDepartamento(depto.numero)}>Delete</button></td>
+                                <td><button className="btn btn-danger"
+                                onClick={() => this.deleteDepartamento(depto.numero)}>Delete
+                                </button></td>
                             </tr>)
                         })
                     }
