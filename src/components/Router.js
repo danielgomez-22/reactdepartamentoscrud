@@ -5,6 +5,7 @@ import HomeComponent from './HomeComponent'
 import CreateDepartamento from './CreateDepartamento'
 import UpdateDepartamento from './UpdateDepartamento'
 import { useParams } from 'react-router-dom';
+import HospitalesMultiple from './HospitalesMultiple'
 
 
 export default class Router extends Component {
@@ -21,6 +22,7 @@ export default class Router extends Component {
           <Route path="/" element={<HomeComponent />} />    
           <Route path="/createdept" element={<CreateDepartamento />} />
           <Route path="/update/:id/:nombre/:localidad" element={<UpdateDepartamentoElement />} />
+          <Route path="/hospitales" element={<HospitalesMultiple />} />
         </Routes>
       </BrowserRouter>
     )
